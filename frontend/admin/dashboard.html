@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Silicon Synapsis</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .dashboard-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--bg-gray);
+            font-weight: 600;
+        }
+
+        select,
+        button {
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">Admin Dashboard</div>
+            <button onclick="logout()" class="btn-primary">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 2rem;">
+        <div class="dashboard-controls">
+            <label>Sort By:</label>
+            <select id="sort-by" onchange="fetchParticipants()">
+                <option value="ai_score">AI Score</option>
+                <option value="ai_rank">Rank</option>
+                <option value="cgpa">CGPA</option>
+                <option value="submitted_at">Submission Time</option>
+            </select>
+
+            <label>Order:</label>
+            <select id="sort-order" onchange="fetchParticipants()">
+                <option value="desc">Descending</option>
+                <option value="asc">Ascending</option>
+            </select>
+
+            <button onclick="exportCSV()" class="btn-primary" style="background-color: #28a745;">Export CSV</button>
+            <button onclick="fetchParticipants()" class="btn-primary">Refresh</button>
+        </div>
+
+        <table id="participants-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Dept</th>
+                    <th>CGPA</th>
+                    <th>Score</th>
+                    <th>Submitted At</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Populated by JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const API_URL = 'http://127.0.0.1:8000/api/admin/participants/';
+        const token = localStorage.getItem('adminToken');
+
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        async function fetchParticipants() {
+            const orderBy = document.getElementById('sort-by').value;
+            const order = document.getElementById('sort-order').value;
+            const tbody = document.querySelector('#participants-table tbody');
+
+            tbody.innerHTML = '<tr><td colspan="6">Loading...</td></tr>';
+
+            try {
+                const response = await fetch(`${API_URL}?order_by=${orderBy}&order=${order}`, {
+                    headers: {
+                        'Authorization': `Token ${token}`
+                    }
+                });
+
+                if (response.status === 403 || response.status === 401) {
+                    alert('Unauthorized. Please login again.');
+                    logout();
+                    return;
+                }
+
+                const data = await response.json();
+                tbody.innerHTML = '';
+
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6">No participants found.</td></tr>';
+                    return;
+                }
+
+                data.forEach(p => {
+                    const row = `
+                        <tr>
+                            <td>${p.rank || '-'}</td>
+                            <td>${p.name}</td>
+                            <td>${p.dept || '-'}</td>
+                            <td>${p.cgpa || '-'}</td>
+                            <td>${p.score !== null ? p.score.toFixed(2) : 'Pending'}</td>
+                            <td>${new Date(p.submitted_at).toLocaleString()}</td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+
+            } catch (error) {
+                console.error(error);
+                tbody.innerHTML = '<tr><td colspan="6">Error loading data.</td></tr>';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('adminToken');
+            window.location.href = 'login.html';
+        }
+
+        function exportCSV() {
+            // Simple client-side export or trigger backend
+            // Since we have an endpoint that returns JSON, let's just convert current view to CSV
+            // The prompt says "Export CSV that calls /api/admin/participants/?"
+            // I'll re-fetch transparently and download
+
+            const orderBy = document.getElementById('sort-by').value;
+            const order = document.getElementById('sort-order').value;
+
+            fetch(`${API_URL}?order_by=${orderBy}&order=${order}`, {
+                headers: { 'Authorization': `Token ${token}` }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (!data || data.length === 0) {
+                        alert('No data to export');
+                        return;
+                    }
+                    const headers = ['Rank', 'Name', 'Dept', 'CGPA', 'Score', 'Submitted At'];
+                    const rows = data.map(p => [
+                        p.rank, p.name, p.dept, p.cgpa, p.score, p.submitted_at
+                    ]);
+
+                    let csvContent = "data:text/csv;charset=utf-8,"
+                        + headers.join(",") + "\n"
+                        + rows.map(e => e.join(",")).join("\n");
+
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", "participants.csv");
+                    document.body.appendChild(link);
+                    link.click();
+                })
+                .catch(err => alert('Export failed'));
+        }
+
+        // Initial Load
+        fetchParticipants();
+    </script>
+</body>
+
+</html>

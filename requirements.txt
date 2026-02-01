@@ -1,0 +1,9 @@
+django>=4.2
+djangorestframework
+django-cors-headers
+pandas
+openpyxl
+requests
+# Space for openai or transformers
+# openai
+# transformers

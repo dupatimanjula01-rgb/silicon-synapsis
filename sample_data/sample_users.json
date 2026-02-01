@@ -1,0 +1,50 @@
+[
+    {
+        "username": "admin",
+        "email": "admin@example.com",
+        "password": "adminpassword",
+        "is_admin": true,
+        "cgpa": 9.5,
+        "department": "CSE"
+    },
+    {
+        "username": "student1",
+        "email": "s1@example.com",
+        "password": "password123",
+        "is_admin": false,
+        "cgpa": 8.5,
+        "department": "ECE"
+    },
+    {
+        "username": "student2",
+        "email": "s2@example.com",
+        "password": "password123",
+        "is_admin": false,
+        "cgpa": 7.2,
+        "department": "MECH"
+    },
+    {
+        "username": "student3",
+        "email": "s3@example.com",
+        "password": "password123",
+        "is_admin": false,
+        "cgpa": 9.1,
+        "department": "CSE"
+    },
+    {
+        "username": "student4",
+        "email": "s4@example.com",
+        "password": "password123",
+        "is_admin": false,
+        "cgpa": 6.5,
+        "department": "EEE"
+    },
+    {
+        "username": "student5",
+        "email": "s5@example.com",
+        "password": "password123",
+        "is_admin": false,
+        "cgpa": 8.0,
+        "department": "CIVIL"
+    }
+]

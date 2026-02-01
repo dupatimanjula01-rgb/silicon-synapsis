@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silicon Synapsis | Innovation Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">Silicon Synapsis</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#domains">Domains</a></li>
+                <li><a href="#competitions">Competitions</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="admin/login.html" class="btn-primary">Admin Login</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Innovate. Build. Lead.</h1>
+            <p>The premier technical club fostering excellence in VLSI, Embedded Systems, Web Development, AI/ML, and Competitive Programming.</p>
+            <a href="#competitions" class="btn-primary btn-large">View Competitions</a>
+        </div>
+    </header>
+
+    <!-- Domains Section -->
+    <section id="domains" class="domains-section">
+        <div class="container">
+            <h2 class="section-title">Our Domains</h2>
+            <div class="domains-grid">
+                
+                <!-- VLSI -->
+                <div class="domain-card">
+                    <div class="card-icon">🔌</div>
+                    <h3>VLSI</h3>
+                    <p>VLSI focuses on the design and verification of integrated circuits, digital & analog design flows, and low-power architectures — ideal for hardware-focused engineers.</p>
+                    <div class="lead-info"><strong>Lead:</strong> A</div>
+                    <a href="#" class="learn-more">Learn more</a>
+                </div>
+
+                <!-- Embedded -->
+                <div class="domain-card">
+                    <div class="card-icon">💾</div>
+                    <h3>Embedded Systems</h3>
+                    <p>Embedded Systems includes microcontroller development, real-time OS, peripheral interfacing, and embedded firmware best practices.</p>
+                    <div class="lead-info"><strong>Lead:</strong> B</div>
+                    <a href="#" class="learn-more">Learn more</a>
+                </div>
+
+                <!-- WebDev -->
+                <div class="domain-card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <p>WebDev covers frontend & backend development, REST APIs, responsive design, and deployment pipelines.</p>
+                    <div class="lead-info"><strong>Lead:</strong> C</div>
+                    <a href="#" class="learn-more">Learn more</a>
+                </div>
+
+                <!-- AIML -->
+                <div class="domain-card">
+                    <div class="card-icon">🤖</div>
+                    <h3>AI/ML</h3>
+                    <p>AI/ML explores model building, evaluation, data pipelines, and applied machine learning for real-world problems.</p>
+                    <div class="lead-info"><strong>Lead:</strong> D</div>
+                    <a href="#" class="learn-more">Learn more</a>
+                </div>
+
+                <!-- CodeMode -->
+                <div class="domain-card">
+                    <div class="card-icon">💻</div>
+                    <h3>Code Mode</h3>
+                    <p>CodeMode promotes algorithmic thinking, competitive programming training, code reviews, and collaborative coding challenges.</p>
+                    <div class="lead-info"><strong>Lead:</strong> E</div>
+                    <a href="#" class="learn-more">Learn more</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitions Section -->
+    <section id="competitions" class="competitions-section">
+        <div class="container">
+            <h2 class="section-title">Active Competitions</h2>
+            <div id="competitions-list" class="competitions-grid">
+                <!-- Populated by JS -->
+                <p class="loading-text">Loading competitions...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2024 Silicon Synapsis. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

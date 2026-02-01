@@ -1,0 +1,42 @@
+[
+    {
+        "user_index": 1,
+        "competition_index": 0,
+        "answers": "We propose a decentralized voting system using Ethereum. It ensures transparency and immutability. Keywords: blockchain, innovation, efficiency."
+    },
+    {
+        "user_index": 2,
+        "competition_index": 0,
+        "answers": "A simple web app for tracking attendance. It uses QR codes."
+    },
+    {
+        "user_index": 3,
+        "competition_index": 0,
+        "answers": "AI driven traffic management system. Uses computer vision to optimize signal timings. Scalability is key."
+    },
+    {
+        "user_index": 4,
+        "competition_index": 0,
+        "answers": "IoT based home automation."
+    },
+    {
+        "user_index": 5,
+        "competition_index": 0,
+        "answers": "Smart irrigation system for farmers. Uses moisture sensors."
+    },
+    {
+        "user_index": 1,
+        "competition_index": 1,
+        "answers": "My solution to Problem A in O(n) time."
+    },
+    {
+        "user_index": 3,
+        "competition_index": 1,
+        "answers": "Detailed explanation of DP approach. Efficiency is O(n^2)."
+    },
+    {
+        "user_index": 4,
+        "competition_index": 1,
+        "answers": "Brute force solution."
+    }
+]

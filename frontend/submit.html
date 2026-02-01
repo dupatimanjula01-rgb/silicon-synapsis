@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Competition Registration</title>
+</head>
+<body>
+
+<h2>Competition Registration</h2>
+
+<label>No. of Participants</label>
+<select id="count" onchange="updateFields()">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+
+<div id="participants"></div>
+
+<button onclick="submitForm()">Register</button>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const competitionId = urlParams.get("competition_id");
+</script>
+
+<script src="js/submit.js"></script>
+</body>
+</html>
