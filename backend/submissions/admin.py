@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Submission
+from .models import Registration
 
-@admin.register(Submission)
-class SubmissionAdmin(admin.ModelAdmin):
+@admin.register(Registration)
+class RegistrationAdmin(admin.ModelAdmin):
     list_display = (
         "competition",
         "team_leader_name",
