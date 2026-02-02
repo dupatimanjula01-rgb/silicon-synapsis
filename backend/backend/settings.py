@@ -25,6 +25,7 @@ ALLOWED_HOSTS = [
 
 # Application definition
 INSTALLED_APPS = [
+    'jazzmin'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -114,4 +115,30 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+}
+JAZZMIN_SETTINGS = {
+    "site_title": "Silicon Synapsis Admin",
+    "site_header": "Silicon Synapsis",
+    "site_brand": "Silicon Synapsis",
+    "welcome_sign": "Welcome to Silicon Synapsis Admin",
+    "copyright": "Silicon Synapsis",
+
+    "search_model": ["auth.User", "competitions.Competition"],
+
+    "topmenu_links": [
+        {"name": "Home", "url": "/admin/", "permissions": ["auth.view_user"]},
+        {"name": "Website", "url": "https://silicons-synapsis.netlify.app", "new_window": True},
+    ],
+
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "competitions.Competition": "fas fa-trophy",
+        "submissions.Submission": "fas fa-file-alt",
+    },
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "theme": "darkly",   # 🔥 dark theme
 }
