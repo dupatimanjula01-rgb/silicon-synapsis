@@ -216,3 +216,18 @@ a {
         font-size: 2rem;
     }
 }
+.competition-card {
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.competition-card:hover {
+    transform: translateY(-5px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    border-radius: 8px;
+}

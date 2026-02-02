@@ -1,14 +1,15 @@
 from django.contrib import admin
-from .models import Registration
+from .models import Submission
 
-@admin.register(Registration)
-class RegistrationAdmin(admin.ModelAdmin):
+@admin.register(Submission)
+class SubmissionAdmin(admin.ModelAdmin):
     list_display = (
         "competition",
-        "number_of_participants",
-        "participant_1_name",
-        "participant_1_roll",
-        "participant_1_phone",
+        "team_leader_name",
+        "roll_no",
+        "phone",
+        "num_participants",
         "submitted_at",
     )
-    list_filter = ("competition",)
+    list_filter = ("competition", "submitted_at")
+    search_fields = ("team_leader_name", "roll_no", "phone")
