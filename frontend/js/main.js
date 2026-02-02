@@ -26,7 +26,9 @@ async function fetchCompetitions() {
     const listContainer = document.getElementById('competitions-list');
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/competitions/');
+        const response = await fetch("https://silicon-synapsis.onrender.com/api/competitions/")
+
+
         if (!response.ok) throw new Error('Failed to fetch');
 
         const competitions = await response.json();

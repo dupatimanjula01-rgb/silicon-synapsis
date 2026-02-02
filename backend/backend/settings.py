@@ -115,3 +115,22 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
 }
+import os
+if os.getenv("RENDER"):
+    from django.core.management import call_command
+    call_command("create_admin")
+import os
+from django.contrib.auth.models import User
+
+if os.environ.get("RENDER") == "true":
+    username = os.environ.get("ADMIN_USERNAME")
+    password = os.environ.get("ADMIN_PASSWORD")
+    email = os.environ.get("ADMIN_EMAIL")
+
+    if username and password:
+        if not User.objects.filter(username=username).exists():
+            User.objects.create_superuser(
+                username=username,
+                password=password,
+                email=email
+            )

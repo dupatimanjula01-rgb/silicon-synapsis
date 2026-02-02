@@ -3,19 +3,17 @@ from django.contrib.auth.models import User
 import os
 
 class Command(BaseCommand):
-    help = "Create admin user from env vars"
-
     def handle(self, *args, **kwargs):
         username = os.getenv("ADMIN_USERNAME")
         password = os.getenv("ADMIN_PASSWORD")
         email = os.getenv("ADMIN_EMAIL", "")
 
         if not username or not password:
-            self.stdout.write("Admin env vars not set")
+            print("ADMIN ENV VARS NOT SET")
             return
 
         if User.objects.filter(username=username).exists():
-            self.stdout.write("Admin already exists")
+            print("ADMIN ALREADY EXISTS")
             return
 
         User.objects.create_superuser(
@@ -23,5 +21,4 @@ class Command(BaseCommand):
             email=email,
             password=password
         )
-
-        self.stdout.write("Admin created successfully")
+        print("ADMIN CREATED")
